@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
 </head>
-<body>
-<h1 class="text-4xl font-bold text-center text-blue-500">
+<body class="bg-gray-100">
+    <div class="p-8">
+        <img src="/img/toucan-logo.svg" alt="Toucantech">
+    </div>
+<h1 class="hello">
     Hello world!
 </h1>
 </body>
