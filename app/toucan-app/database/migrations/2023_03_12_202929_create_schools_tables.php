@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id('schoolID');
             $table->string('Name', 50);
-            $table->string('Country', 50);
+            $table->enum('Country', ['UK', 'USA', 'Canada', 'Australia', 'New Zealand', 'Japan']);
         });
         DB::table('schools')->insert([
             ['schoolID' => 1, 'Name' => 'London School of Economics', 'Country' => 'UK'],
