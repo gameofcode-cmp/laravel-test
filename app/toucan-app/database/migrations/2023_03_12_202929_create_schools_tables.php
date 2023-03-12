@@ -30,19 +30,19 @@ return new class extends Migration
         ]);
         Schema::create('school_profile_mapping', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('school_id')->constrained('schools');
+            $table->foreignId('schoolID')->constrained('schools', 'schoolID');
             $table->integer('UserRefID');
         });
 
         // Insert data
         DB::table('school_profile_mapping')->insert([
-            ['school_id' => 1, 'UserRefID' => 100567],
-            ['school_id' => 2, 'UserRefID' => 100567],
-            ['school_id' => 4, 'UserRefID' => 100567],
-            ['school_id' => 2, 'UserRefID' => 200234],
-            ['school_id' => 3, 'UserRefID' => 300901],
-            ['school_id' => 4, 'UserRefID' => 400678],
-            ['school_id' => 1, 'UserRefID' => 500345]
+            ['schoolID' => 1, 'UserRefID' => 100567],
+            ['schoolID' => 2, 'UserRefID' => 100567],
+            ['schoolID' => 4, 'UserRefID' => 100567],
+            ['schoolID' => 2, 'UserRefID' => 200234],
+            ['schoolID' => 3, 'UserRefID' => 300901],
+            ['schoolID' => 4, 'UserRefID' => 400678],
+            ['schoolID' => 1, 'UserRefID' => 500345]
         ]);
     }
 

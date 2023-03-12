@@ -17,6 +17,10 @@ On first run execute the following steps to install dependencies and seed the in
 5. Seed database
 
     ``docker exec toucan-app sh -c "cd ./toucan-app && php artisan migrate"``
+5. CSS etc
+
+   ``/toucan-app/ npm run install"``
+   ``npm run build``
 
 # Running
 Once installed app can be launched with:
