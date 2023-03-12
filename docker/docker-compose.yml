@@ -39,6 +39,7 @@ services:
       - docker_network
   db:
     image: mysql:5.7.12
+    container_name: toucan-db
     ports:
       - "3306:3306"
     volumes:
