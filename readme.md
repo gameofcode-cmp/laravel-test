@@ -13,7 +13,7 @@ On first run execute the following steps to install dependencies and seed the in
     ```docker exec -d toucan-app chown www-data:www-data -R /var/www```
 4. Create database
 
-    ``docker exec docker-db-1 sh -c "mysql -uroot -pdocker -e  'CREATE DATABASE toucan;'"``
+    ``docker exec toucan-db sh -c "mysql -uroot -pdocker -e  'CREATE DATABASE toucan;'"``
 5. Seed database
 
     ``docker exec toucan-app sh -c "cd ./toucan-app && php artisan migrate"``
