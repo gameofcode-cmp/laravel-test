@@ -1,6 +1,12 @@
-.hello {
-    color: blue;
+.form-control-small {
+    width: 220px;
 }
+.form-control-med {
+    width: 300px;
+}
+
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/

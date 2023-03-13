@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id('UserRefID');
             $table->string('Firstname', 50);
             $table->string('Surname', 50);
-            $table->boolean('Deceased');
+            $table->boolean('Deceased')->default(false);
             $table->timestamps();
         });
         // Insert test data into the profiles table
