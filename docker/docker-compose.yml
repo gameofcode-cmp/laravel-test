@@ -28,13 +28,15 @@ services:
 #      - ./nginx/certs:/etc/ssl/private
 #      - ./nginx/certs:/etc/ssl/certs
     environment:
-      - NGINX_HOST=toucan
+      - NGINX_HOST=toucan-app
       - NGINX_PORT=80
       - catch_workers_output=yes
     ports:
       - 80:80
       - 8443:443
       - 443:443
+      - 9000:9000
+      - 9001:9001
     networks:
       - docker_network
   db:

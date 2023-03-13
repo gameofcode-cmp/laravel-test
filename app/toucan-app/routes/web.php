@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', [SchoolController::class, 'index'])->name('schools.index');
+Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
