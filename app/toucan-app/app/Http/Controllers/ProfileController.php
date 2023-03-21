@@ -55,4 +55,56 @@ class ProfileController extends Controller
 
         return redirect()->route('profiles.add')->with('success', 'Profile added successfully!');
     }
+
+
+    public function getProfilesBySchool(Request $request, $schoolId = null)
+    {
+        $schools = School::all();
+        $selectedSchoolId = $schoolId ?? $request->input('school_id') ?? null;
+
+        if ($selectedSchoolId) {
+            $school = School::find($selectedSchoolId);
+
+            if (!$school) {
+                return response()->json(['message' => 'School not found'], 404);
+            }
+
+            $profiles = Profile::join('school_profile_mapping', 'profiles.UserRefID', '=', 'school_profile_mapping.UserRefID')
+                ->where('school_profile_mapping.schoolID', $selectedSchoolId)
+                ->where('profiles.Deceased', false)
+                ->select('profiles.Firstname', 'profiles.Surname')
+                ->get();
+        } else {
+            $profiles = collect([]);
+        }
+
+        return view('profiles.index', compact('schools', 'profiles', 'selectedSchoolId'));
+    }
+
+    public function downloadCsv()
+    {
+        $profiles = Profile::with('schools', 'emails')
+            ->orderBy('Firstname')
+            ->get();
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="profiles.csv"',
+        ];
+
+        $callback = function () use ($profiles) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, ['First name', 'Last name', 'School', 'Email']);
+
+            foreach ($profiles as $profile) {
+                $schoolNames = $profile->schools->pluck('Name')->implode(', ');
+                $emailAddresses = $profile->emails->pluck('emailaddress')->implode(', ');
+                fputcsv($file, [$profile->Firstname, $profile->Surname, $schoolNames, $emailAddresses]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->streamDownload($callback, 'profiles.csv', $headers);
+    }
 }

@@ -24,4 +24,9 @@ class Profile extends Model
     {
         return $this->hasMany(Email::class, 'UserRefID', 'UserRefID');
     }
+
+    public function schools()
+    {
+        return $this->belongsToMany(School::class, 'school_profile_mapping', 'UserRefID', 'schoolID');
+    }
 }

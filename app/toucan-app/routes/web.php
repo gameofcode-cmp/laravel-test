@@ -21,6 +21,9 @@ Route::get('/welcome', function () {
 
 Route::get('/', [SchoolController::class, 'index'])->name('schools.index');
 
-Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
+//Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
+Route::get('/profiles/{schoolId}', [ProfileController::class, 'getProfilesBySchool'])->name('profiles.index');
+Route::get('/profiles/', [ProfileController::class, 'getProfilesBySchool'])->name('profiles.index');
 Route::get('/profiles/add', [ProfileController::class, 'add'])->name('profiles.add');
 Route::post('/profiles/store', [ProfileController::class, 'store'])->name('profiles.store');
+Route::get('/profiles/download/csv', [ProfileController::class, 'downloadCsv'])->name('profiles.download.csv');
